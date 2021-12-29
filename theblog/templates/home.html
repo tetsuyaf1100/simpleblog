@@ -2,15 +2,19 @@
 
 
 {% block content %}
-<h1>Post</h1>
+<h1>Posts</h1>
 
 <ul>
 {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">
     
     {{ post.title }} - {{ post.author }} - {{ post.post_date }}
-    <a href="{% url 'update_post' post.pk %}">Edit</a><br>
-    <a href="{% url 'delete_post' post.pk %}">Delete</a><br>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'update_post' post.pk %}" class="btn btn-secondary">Edit</a>
+        <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+    <br>
     {{ post.body }}</li>
 
 {% endfor %}
