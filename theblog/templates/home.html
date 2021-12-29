@@ -15,7 +15,7 @@
         <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
     {% endif %}
     <br>
-    {{ post.body }}</li>
+    {{ post.body|safe }}</li>
 
 {% endfor %}
 </ul>
