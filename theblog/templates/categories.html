@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% block title %} Category {% endblock %}
+{% block content %}
+
+<h1>Category...</h1>
+
+{{ cats }}
+
+{% for post in category_posts %}
+    <li><a href="{% url 'article-detail' post.pk %}">
+    
+    {{ post.title }} - {{ post.category }} - {{ post.author }} - {{ post.post_date }}
+
+
+{% endfor %}
+
+
+
+{% endblock %}
