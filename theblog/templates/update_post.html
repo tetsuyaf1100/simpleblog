@@ -3,12 +3,22 @@
 {% block content %}
 
 <h1>Edit Post...</h1>
+{{ user.id }}
+{{ post.author.id }}
+{{ user.is_authenticated }}
 
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-secondary">Post<button>
-</div>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Post<button>
+        </div>
+    {% else %}
+        <h1>Permmision Error</h1>
+        <p>post.author:{{ post.author }} is only edit.</p>
+    {% endif %}
+{% endif %}
 
 {% endblock %}

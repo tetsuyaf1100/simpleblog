@@ -45,6 +45,7 @@ class UpdatePostView(UpdateView):
     form_class = EditForm
     template_name = 'update_post.html'
 
+
 class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
